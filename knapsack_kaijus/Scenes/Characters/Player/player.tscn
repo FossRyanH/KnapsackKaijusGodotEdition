@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmmknchel1833"]
+
+[ext_resource type="Texture2D" uid="uid://bnlt75wo5ytye" path="res://icon.svg" id="1_2n66b"]
+
+[node name="Player" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("1_2n66b")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+scale = Vector2(0.08, 0.08)
+polygon = PackedVector2Array(59.1, -64, -59, -64, -63.8, -59, -64, 61, -60.3, 64, 59.6, 64, 63.9, 59, 64, -61.1)
