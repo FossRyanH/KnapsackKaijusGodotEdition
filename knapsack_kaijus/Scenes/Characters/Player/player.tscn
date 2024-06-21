@@ -1,14 +1,33 @@
-[gd_scene load_steps=2 format=3 uid="uid://bmmknchel1833"]
+[gd_scene load_steps=7 format=3 uid="uid://bmmknchel1833"]
 
 [ext_resource type="Texture2D" uid="uid://bnlt75wo5ytye" path="res://icon.svg" id="1_2n66b"]
+[ext_resource type="Script" path="res://Scripts/CharacterRelated/Player/Player.cs" id="1_gb1hm"]
+[ext_resource type="Shader" path="res://Scripts/Shaders/SwapColour.gdshader" id="2_22rtd"]
 
-[node name="Player" type="CharacterBody2D"]
+[sub_resource type="Gradient" id="Gradient_bf5uw"]
+offsets = PackedFloat32Array(0, 0.508197, 1)
+colors = PackedColorArray(0.32549, 0, 0.635294, 1, 0.286275, 0, 0.286275, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dsxh3"]
+gradient = SubResource("Gradient_bf5uw")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t52xq"]
+shader = ExtResource("2_22rtd")
+shader_parameter/gradient = SubResource("GradientTexture2D_dsxh3")
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("_animationPlayer")]
+script = ExtResource("1_gb1hm")
+_animationPlayer = NodePath("AnimationPlayer")
+_moveSpeed = 270.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-scale = Vector2(0.08, 0.08)
+material = SubResource("ShaderMaterial_t52xq")
 texture = ExtResource("1_2n66b")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-scale = Vector2(0.08, 0.08)
+visible = false
+scale = Vector2(0.15, 0.15)
 polygon = PackedVector2Array(59.1, -64, -59, -64, -63.8, -59, -64, 61, -60.3, 64, 59.6, 64, 63.9, 59, 64, -61.1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
